@@ -38,3 +38,27 @@
   :config
   (setq doom-modeline-icon t
         doom-modeline-lsp t))
+
+(use-package savehist
+  :init
+  (savehist-mode))
+
+(use-package vertico
+  :init
+  (vertico-mode)
+  :custom
+  (vertico-cycle t))
+
+(use-package marginalia
+  :init
+  (marginalia-mode)
+  :after vertico
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
+
+(use-package orderless)
+
+(use-package ag
+  :ensure t
+  :defer t
+  :ensure-system-package (ag . silversearcher-ag))

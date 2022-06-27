@@ -3,7 +3,9 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
-(use-package forge)
+(use-package forge
+  :defer t
+  :after magit)
 
 (use-package company
   :ensure t
@@ -22,6 +24,11 @@
 (use-package eglot
   :bind (:map eglot-mode-map
 	      ("S-<f6>" . eglot-rename)))
+
+(use-package smart-comment
+  :ensure t
+  :bind ("M-;" . smart-comment))
+
 
 (setq code-find-definitions 'xref-find-definitions)
 (setq code-pop-back-from-definition 'xref-pop-marker-stack)

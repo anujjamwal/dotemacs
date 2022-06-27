@@ -21,14 +21,20 @@
 (setq use-package-always-ensure 't)
 
 (use-package exec-path-from-shell
-  :init (lambda () (when (memq window-system '(mac ns x))
-                         (exec-path-from-shell-initialize))))
+  :ensure t
+  :defer 0.1
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package auto-package-update
   :config
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
+
+(use-package system-packages
+  :custom
+  (system-packages-noconfirm t))
 
 (use-package use-package-ensure-system-package)
 
@@ -56,7 +62,6 @@
 
 ;; Theme
 (use-package doom-themes
-  :ensure t
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
