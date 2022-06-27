@@ -9,3 +9,11 @@
 
 # Undo-tree save-files
 *.~undo-tree
+.last-package-update-day
+*.sqlite
+transient/
+elpa/
+melpa/
+recentf
+*.elc
+("elpa/" "git" "status")
