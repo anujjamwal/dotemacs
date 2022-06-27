@@ -17,3 +17,6 @@ melpa/
 recentf
 *.elc
 ("elpa/" "git" "status")
+
+eshell/
+.gitconfig

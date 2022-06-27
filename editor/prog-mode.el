@@ -19,22 +19,15 @@
 (use-package treemacs
   :ensure t)
 
-(use-package lsp-mode
-  :ensure t
-  :hook ((lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp lsp-deferred))
+(use-package eglot
+  :bind (:map eglot-mode-map
+	      ("S-<f6>" . eglot-rename)))
 
-(use-package lsp-ui
-  :ensure t
-  :hook (lsp-mode . lsp-ui-mode)
-  :config
-  (setq lsp-ui-doc-position 'bottom))
-  
-(use-package lsp-treemacs
-  :ensure t
-  :after lsp)
-
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
+(setq code-find-definitions 'xref-find-definitions)
+(setq code-pop-back-from-definition 'xref-pop-marker-stack)
+(setq code-run-test-single nil)
 
 
+(global-set-key (kbd "M-.") code-find-definitions)
+(global-set-key (kbd "M-,") code-pop-back-from-definition)
+(global-set-key (kbd "M-T") code-run-test-single)
