@@ -1,5 +1,7 @@
 (use-package helm
   :init (helm-mode 1)
+  :bind (:map helm-map
+	      ("TAB" . helm-execute-if-single-persistent-action))
   :bind (("M-x" . helm-M-x)
 	 ("C-x C-f" . helm-find-files)
 	 ("C-x b" . helm-mini))

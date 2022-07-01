@@ -1,3 +1,11 @@
+(use-package projectile
+  :hook ((prog-mode . projectile-mode))
+  :config
+  (setq projectile-sort-order 'recentf))
+
+(use-package helm-projectile)
+(use-package treemacs-projectile)
+
 (use-package magit
   :commands (magit-status magit-get-current-branch)
   :custom
@@ -29,7 +37,7 @@
   :commands (lsp lsp-deferred)
   :hook (lsp-mode . lsp-enable-which-key-integration)
   :init
-  (setq lsp-keymap-prefix "C-l")
+  (setq lsp-keymap-prefix "C-c l")
   :config
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode)
