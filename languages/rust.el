@@ -1,5 +1,9 @@
 (use-package rustic
-  :ensure t
-  :hook ((rust-mode . eglot-ensure))
+  :hook ((rust-mode . lsp))
+  :config
+  (setq rustic-format-trigger 'on-save
+	rustic-lsp-client 'eglot
+	rustic-spinner-type 'moon)
   :ensure-system-package ((rustup . "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh")
-                          (rust-analyzer . "rustup +nightly component add rust-analyzer-preview")))
+                          (rust-analyzer . "rustup +nightly component add rust-analyzer-preview")
+			  (clippy . "rustup component add --toolchain nightly clippy")))

@@ -10,6 +10,10 @@
 (use-package company
   :ensure t
   :hook ((prog-mode . company-mode))
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+         ("<tab>" . company-indent-or-complete-common))
   :config
   (setq company-idle-delay 0.1
 	company-minimum-prefix-length 1
@@ -21,20 +25,34 @@
 (use-package treemacs
   :ensure t)
 
-(use-package eglot
-  :bind (:map eglot-mode-map
-	      ("S-<f6>" . eglot-rename)))
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook (lsp-mode . lsp-enable-which-key-integration)
+  :init
+  (setq lsp-keymap-prefix "C-l")
+  :config
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (lsp-headerline-breadcrumb-mode)
+  (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
+
+(use-package lsp-ui
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
+(use-package helm-lsp)
+
+(use-package lsp-treemacs
+  :after lsp)
 
 (use-package smart-comment
   :ensure t
   :bind ("M-;" . smart-comment))
 
+(use-package yasnippet
+  :ensure t
+  :hook ((lsp-mode . yas-minor-mode)))
 
-(setq code-find-definitions 'xref-find-definitions)
-(setq code-pop-back-from-definition 'xref-pop-marker-stack)
-(setq code-run-test-single nil)
 
-
-(global-set-key (kbd "M-.") code-find-definitions)
-(global-set-key (kbd "M-,") code-pop-back-from-definition)
-(global-set-key (kbd "M-T") code-run-test-single)
+(global-set-key (kbd "M-.") 'xref-find-definitions)
+(global-set-key (kbd "M-,") 'xref-pop-marker-stack)
+(global-set-key (kbd "<f12>") 'xref-find-apropos)
