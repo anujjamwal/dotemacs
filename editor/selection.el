@@ -1,10 +1,7 @@
 (use-package helm
   :init (helm-mode 1)
   :bind (:map helm-map
-	      ("TAB" . helm-execute-if-single-persistent-action))
-  :bind (("M-x" . helm-M-x)
-	 ("C-x C-f" . helm-find-files)
-	 ("C-x b" . helm-mini))
+	      ("TAB" . helm-execute-persistent-action))
   :config
   (setq completion-styles '(flex)
 	helm-always-two-windows nil
@@ -18,3 +15,10 @@
 
 (use-package helm-ag
   :after helm)
+
+(use-package helm-xref
+  :after helm)
+
+(define-key global-map [remap find-file] #'helm-find-files)
+(define-key global-map [remap execute-extended-command] #'helm-M-x)
+(define-key global-map [remap switch-to-buffer] #'helm-mini)

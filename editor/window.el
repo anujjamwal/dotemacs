@@ -47,3 +47,8 @@
   :ensure t
   :defer t
   :ensure-system-package (ag . silversearcher-ag))
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))

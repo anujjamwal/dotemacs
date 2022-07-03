@@ -61,6 +61,6 @@
   :hook ((lsp-mode . yas-minor-mode)))
 
 
-(global-set-key (kbd "M-.") 'xref-find-definitions)
-(global-set-key (kbd "M-,") 'xref-pop-marker-stack)
+(global-set-key (kbd "M-.") 'lsp-ui-peek-find-definitions)
+(global-set-key (kbd "M-,") 'xref-go-back)
 (global-set-key (kbd "<f12>") 'xref-find-apropos)
